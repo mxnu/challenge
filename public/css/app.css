@@ -163,6 +163,36 @@ html, body {
   background-color: #1976D2;
 }
 
+.calendar-select {
+  background: none;
+  padding: 0.5rem;
+  width: 95%;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+}
+
+.calendar-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.calendar-btn.ok {
+  background-color: #1976D2;
+  padding: 0.2rem 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+}
+.calendar-btn.ok[disabled] {
+  background-color: #6da1d4;
+  cursor: not-allowed;
+}
+.calendar-btn.cancel {
+  background-color: #b61919;
+  padding: 0.2rem 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+}
+
 /* TEXT CLASSES */
 .sm\:text {
   font-size: 1rem;

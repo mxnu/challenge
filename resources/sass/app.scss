@@ -150,6 +150,34 @@ html, body {
       }
    }
 }
+.calendar-select {
+   background: none;
+   padding: .5rem;
+   width: 95%;
+   border: 1px solid #aaa;
+   border-radius: .5rem;
+}
+.calendar-btn {
+   cursor: pointer;
+   background: none;
+   border: none;
+   &.ok {
+      background-color: #1976D2;
+      padding: .2rem .5rem;
+      color: white;
+      border-radius: .5rem;
+      &[disabled] {
+         background-color: #6da1d4;
+         cursor: not-allowed;
+      }
+   }
+   &.cancel {
+      background-color: #b61919;
+      padding: .2rem .5rem;
+      color: white;
+      border-radius: .5rem;
+   }
+}
 /* TEXT CLASSES */
 .sm\:text {
    font-size: 1rem;

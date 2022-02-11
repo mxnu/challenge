@@ -5305,6 +5305,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5316,7 +5337,13 @@ __webpack_require__.r(__webpack_exports__);
       data: {},
       arr_day: [0, 1, 2, 3, 4, 5, 6],
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      selected: null
+      years: [],
+      selected: null,
+      fastSelect: false,
+      fastSelect_data: {
+        year: null,
+        month: null
+      }
     };
   },
   mounted: function mounted() {
@@ -5348,7 +5375,16 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      this.data = data;
+      this.data = data; // Procesar años (busqueda rapida)
+
+      this.fillYears(this.year);
+    },
+    fillYears: function fillYears(year) {
+      this.years = [];
+
+      for (var i = year - 10; i <= year + 10; i++) {
+        this.years.push(i);
+      }
     },
     getDaysInMonth: function getDaysInMonth(month) {
       return new Date(this.year, month + 1, 0).getDate();
@@ -5391,6 +5427,16 @@ __webpack_require__.r(__webpack_exports__);
       var day = ('0' + this.selected).slice(-2);
       var month = ('0' + (this.month + 1)).slice(-2);
       return "".concat(day, "/").concat(month, "/").concat(this.year);
+    },
+    changeAño: function changeAño(e) {
+      this.fillYears(parseInt(e.target.value));
+    },
+    fastSelect_ok: function fastSelect_ok() {
+      this.year = this.fastSelect_data.year;
+      this.month = this.fastSelect_data.month;
+      this.selected = 1;
+      this.init();
+      this.fastSelect = false;
     }
   }
 });
@@ -28472,6 +28518,7 @@ var render = function () {
           on: {
             click: function ($event) {
               _vm.open = true
+              _vm.fastSelect = false
             },
           },
         },
@@ -28480,84 +28527,239 @@ var render = function () {
     ]),
     _vm._v(" "),
     _vm.open
-      ? _c("div", { staticClass: "calendar" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-8" }, [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.months[_vm.month]) +
-                  " " +
-                  _vm._s(_vm.year) +
-                  "\n         "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "button",
-                { staticClass: "btn-calendar", on: { click: _vm.before } },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: _vm.asset("images/left-arrow.png"),
-                      alt: "Anterior",
-                    },
-                  }),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn-calendar", on: { click: _vm.after } },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: _vm.asset("images/right-arrow.png"),
-                      alt: "Siguiente",
-                    },
-                  }),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-content-center" }, [
-            _c("table", [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(Object.values(_vm.data), function (week) {
-                  return _c(
-                    "tr",
-                    _vm._l(_vm.arr_day, function (day) {
-                      return _c("td", { staticClass: "calendar-day" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn-calendar-days",
-                            class:
-                              week[day] && _vm.selected == week[day]
-                                ? "active"
-                                : "",
-                            on: {
-                              click: function ($event) {
-                                return _vm.select(week[day])
+      ? _c(
+          "div",
+          { staticClass: "calendar" },
+          [
+            _vm.fastSelect
+              ? [
+                  _vm._v("\n         Seleccione año y mes\n         "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.fastSelect_data.year,
+                              expression: "fastSelect_data.year",
+                            },
+                          ],
+                          staticClass: "calendar-select",
+                          on: {
+                            change: [
+                              function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.fastSelect_data,
+                                  "year",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
                               },
+                              function ($event) {
+                                _vm.changeAño($event)
+                              },
+                            ],
+                          },
+                        },
+                        _vm._l(_vm.years, function (year) {
+                          return _c("option", { domProps: { value: year } }, [
+                            _vm._v(_vm._s(year)),
+                          ])
+                        }),
+                        0
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.fastSelect_data.month,
+                              expression: "fastSelect_data.month",
+                            },
+                          ],
+                          staticClass: "calendar-select",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.fastSelect_data,
+                                "month",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             },
                           },
-                          [_vm._v(_vm._s(week[day]))]
-                        ),
-                      ])
-                    }),
-                    0
-                  )
-                }),
-                0
-              ),
-            ]),
-          ]),
-        ])
+                        },
+                        _vm._l(_vm.months, function (month, idx) {
+                          return _c("option", { domProps: { value: idx } }, [
+                            _vm._v(_vm._s(month)),
+                          ])
+                        }),
+                        0
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-4" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "calendar-btn ok",
+                        attrs: {
+                          disabled:
+                            !_vm.fastSelect_data.year ||
+                            !_vm.fastSelect_data.month,
+                        },
+                        on: { click: _vm.fastSelect_ok },
+                      },
+                      [_vm._v("Ok")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "calendar-btn cancel",
+                        on: {
+                          click: function ($event) {
+                            _vm.fastSelect = false
+                          },
+                        },
+                      },
+                      [_vm._v("Cancelar")]
+                    ),
+                  ]),
+                ]
+              : [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _vm._v(
+                        "\n               " +
+                          _vm._s(_vm.months[_vm.month]) +
+                          " " +
+                          _vm._s(_vm.year) +
+                          " "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "calendar-btn",
+                          on: {
+                            click: function ($event) {
+                              _vm.fastSelect = true
+                            },
+                          },
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: _vm.asset("images/downward-arrow.png"),
+                              alt: "Desplegar",
+                            },
+                          }),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn-calendar",
+                          on: { click: _vm.before },
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: _vm.asset("images/left-arrow.png"),
+                              alt: "Anterior",
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn-calendar",
+                          on: { click: _vm.after },
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: _vm.asset("images/right-arrow.png"),
+                              alt: "Siguiente",
+                            },
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex justify-content-center" }, [
+                    _c("table", [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(Object.values(_vm.data), function (week) {
+                          return _c(
+                            "tr",
+                            _vm._l(_vm.arr_day, function (day) {
+                              return _c("td", { staticClass: "calendar-day" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn-calendar-days",
+                                    class:
+                                      week[day] && _vm.selected == week[day]
+                                        ? "active"
+                                        : "",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.select(week[day])
+                                      },
+                                    },
+                                  },
+                                  [_vm._v(_vm._s(week[day]))]
+                                ),
+                              ])
+                            }),
+                            0
+                          )
+                        }),
+                        0
+                      ),
+                    ]),
+                  ]),
+                ],
+          ],
+          2
+        )
       : _vm._e(),
   ])
 }
