@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('reports');
+    return redirect('/login');
+    //return view('reports');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/reports', [ReportController::class, 'index']);
+});
+Auth::routes();

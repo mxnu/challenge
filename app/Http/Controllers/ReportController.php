@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 
 class ReportController extends Controller {
+    public function index() {
+        return view('reports');
+    }
+
     public function generateReport(Request $request) {
         // Validar datos recibidos
         $reporte = request()->all();

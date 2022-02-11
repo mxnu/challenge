@@ -21,7 +21,7 @@
          <img src="{{ asset('images/logo-tkambio.svg') }}" alt="Logo" width="500px">
       </a>
    </nav>
-   <div id="app">
+   <div id="app" v-cloak>
       <div class="lg:text mt-6 bold:text center:text">Generador de reportes TK</div>
       <reports-component ref="report" @new="openModal('generarModal')"></reports-component>
       <modal-component ref="generarModal">

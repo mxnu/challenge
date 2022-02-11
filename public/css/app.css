@@ -52,6 +52,37 @@ html, body {
   max-width: 100%;
 }
 
+.col-md-4 {
+  flex-grow: 1;
+  max-width: 25%;
+}
+
+.col-md-6 {
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+.col-md-8 {
+  flex-grow: 1;
+  max-width: 66.6666%;
+}
+
+@media (min-width: 992px) {
+  .col-lg-6 {
+    flex-grow: 1;
+    max-width: 50%;
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: 4px 6px;
+}
+
+[v-cloak] {
+  display: none;
+}
+
 /* TEXT CLASSES */
 .sm\:text {
   font-size: 1rem;
@@ -88,6 +119,10 @@ html, body {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.8rem;
 }
 
 /* BUTTONS */
@@ -218,4 +253,18 @@ fieldset input {
 
 body.modal-open {
   overflow: hidden;
+}
+
+/* CARD */
+.card {
+  box-shadow: 0 0 2px #333b;
+  padding: 24px 20px;
+}
+.card .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 1.2rem;
 }
