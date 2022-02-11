@@ -15,6 +15,10 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('report_link');
             $table->timestamps();
         });
     }

@@ -38,5 +38,37 @@ const app = new Vue({
             start_date: null,
             end_date: null
         }
+    },
+    methods: {
+        crearReporte() {
+            let form = this.form;
+            if (form.description == null || form.start_date == null || form.end_date == null) {
+                alert('Debe llenar todos los campos');
+                return;
+            }
+            fetch('/api/generate-report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    description: form.description,
+                    start_date: form.start_date,
+                    end_date: form.end_date
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    form.description = null;
+                    form.start_date = null;
+                    form.end_date = null;
+                    this.$refs.report.loadData();
+                    this.closeModal('generarModal');
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
     }
 });

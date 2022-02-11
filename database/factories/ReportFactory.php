@@ -14,8 +14,6 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid,
-            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'title' => $this->faker->text(50),
             'report_link' => $this->faker->url
         ];

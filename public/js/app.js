@@ -5354,9 +5354,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      reports: null
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.loadData();
+  },
+  methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      fetch('/api/list-reports').then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.reports = data;
+      });
+    }
   }
 });
 
@@ -5404,6 +5426,44 @@ var app = new Vue({
       description: null,
       start_date: null,
       end_date: null
+    }
+  },
+  methods: {
+    crearReporte: function crearReporte() {
+      var _this = this;
+
+      var form = this.form;
+
+      if (form.description == null || form.start_date == null || form.end_date == null) {
+        alert('Debe llenar todos los campos');
+        return;
+      }
+
+      fetch('/api/generate-report', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          description: form.description,
+          start_date: form.start_date,
+          end_date: form.end_date
+        })
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data.success) {
+          form.description = null;
+          form.start_date = null;
+          form.end_date = null;
+
+          _this.$refs.report.loadData();
+
+          _this.closeModal('generarModal');
+        } else {
+          alert(data.message);
+        }
+      });
     }
   }
 });
@@ -28267,25 +28327,67 @@ var render = function () {
       _c("table", { staticClass: "table" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("Reporte de usuario 1")]),
+        _c(
+          "tbody",
+          [
+            _vm._l(_vm.reports, function (report) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(report.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(report.created_at))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn-descargar",
+                      attrs: {
+                        href: "/api/get-report/" + report.id,
+                        target: "_blank",
+                      },
+                    },
+                    [
+                      _c("span", [_vm._v("Descargar")]),
+                      _c("img", {
+                        attrs: {
+                          src: _vm.asset("images/icon-download.png"),
+                          alt: "Descargar",
+                        },
+                      }),
+                    ]
+                  ),
+                ]),
+              ])
+            }),
             _vm._v(" "),
-            _c("td", [_vm._v("04/02/2020")]),
+            !_vm.reports
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "force-center:text",
+                      attrs: { colspan: "3" },
+                    },
+                    [_vm._v("Cargando...")]
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("td", [
-              _c("button", { staticClass: "btn-descargar" }, [
-                _c("span", [_vm._v("Descargar")]),
-                _c("img", {
-                  attrs: {
-                    src: _vm.asset("images/icon-download.png"),
-                    alt: "Descargar",
-                  },
-                }),
-              ]),
-            ]),
-          ]),
-        ]),
+            _vm.reports && _vm.reports.length == 0
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "force-center:text",
+                      attrs: { colspan: "3" },
+                    },
+                    [_vm._v("Sin reportes generados")]
+                  ),
+                ])
+              : _vm._e(),
+          ],
+          2
+        ),
       ]),
     ]),
     _vm._v(" "),

@@ -77,6 +77,10 @@ html, body {
   text-align: center;
 }
 
+.force-center\:text {
+  text-align: center !important;
+}
+
 /* SPACES */
 .mt-6 {
   margin-top: 2rem;
@@ -113,6 +117,7 @@ html, body {
   background: none;
   color: #fff;
   border: none;
+  text-decoration: none;
 }
 .btn-descargar img {
   width: 14px;

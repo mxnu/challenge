@@ -69,6 +69,9 @@ html, body {
 .center\:text {
    text-align: center;
 }
+.force-center\:text {
+   text-align: center !important;
+}
 /* SPACES */
 .mt-6 {
    margin-top: 2rem;
@@ -102,6 +105,7 @@ html, body {
    background: none;
    color: $text-color;
    border: none;
+   text-decoration: none;
    img {
       width: 14px;
    }

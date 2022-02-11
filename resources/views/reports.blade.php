@@ -23,13 +23,13 @@
    </nav>
    <div id="app">
       <div class="lg:text mt-6 bold:text center:text">Generador de reportes TK</div>
-      <reports-component @new="openModal('generarModal')"></reports-component>
+      <reports-component ref="report" @new="openModal('generarModal')"></reports-component>
       <modal-component ref="generarModal">
          <div class="md:text bold:text center:text">Reporte por fecha de nacimiento</div>
          <div class="sm:text gray:text">Ingresa los siguientes datos para generar tu reporte</div>
          <fieldset class="mt-4">
             <legend>Descripción del reporte</legend>
-            <input type="text" v-model="form.description">
+            <input type="text" v-model="form.description" maxlength="100">
          </fieldset>
          <div>Fecha de nacimiento</div>
          <div class="row">
@@ -47,7 +47,7 @@
             </div>
          </div>
          <div class="center:text">
-            <button class="btn mt-4" :disabled="!form.description || !form.start_date || !form.end_date">Crear reporte</button>
+            <button @click="crearReporte" class="btn mt-4" :disabled="!form.description || !form.start_date || !form.end_date">Crear reporte</button>
          </div>
       </modal-component>
    </div>

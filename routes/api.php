@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Resources\ReportResource;
-use App\Models\Report;
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +18,6 @@ use App\Models\Report;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/list-reports', function (Request $request) {
-    return new ReportResource(Report::all());
-});
+Route::post('/generate-report', [ReportController::class, 'generateReport']);
+Route::get('/get-report/{id}', [ReportController::class, 'getReport']);
+Route::get('/list-reports', [ReportController::class, 'listReports']);

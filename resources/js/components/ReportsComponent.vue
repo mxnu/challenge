@@ -10,14 +10,20 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td>Reporte de usuario 1</td>
-                  <td>04/02/2020</td>
+               <tr v-for="report in reports">
+                  <td>{{ report.title }}</td>
+                  <td>{{ report.created_at }}</td>
                   <td>
-                     <button class="btn-descargar">
+                     <a :href="'/api/get-report/' + report.id" target="_blank" class="btn-descargar">
                         <span>Descargar</span><img :src="asset('images/icon-download.png')" alt="Descargar">
-                     </button>
+                     </a>
                   </td>
+               </tr>
+               <tr v-if="!reports">
+                  <td colspan="3" class="force-center:text">Cargando...</td>
+               </tr>
+               <tr v-if="reports && reports.length == 0">
+                  <td colspan="3" class="force-center:text">Sin reportes generados</td>
                </tr>
             </tbody>
          </table>
@@ -27,12 +33,21 @@
 </template>
 <script>
 export default {
+   data() {
+      return {
+         reports: null
+      }
+   },
    mounted() {
       this.loadData();
    },
    methods: {
       loadData() {
-         
+         fetch('/api/list-reports')
+            .then(response => response.json())
+            .then(data => {
+               this.reports = data;
+            });
       },
    },
 }
