@@ -83,6 +83,86 @@ html, body {
   display: none;
 }
 
+/* CALENDAR */
+.calendar {
+  width: 230px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 2;
+  padding: 24px 20px;
+  box-shadow: 0 0 6px 2px #333b;
+}
+
+.btn-calendar {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-day {
+  text-align: center;
+}
+
+.calendar-form {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+.calendar-form .calendar-text {
+  cursor: pointer;
+  position: relative;
+  height: 1rem;
+}
+.calendar-form .calendar-text:after {
+  content: "";
+  position: absolute;
+  background-image: url("/images/calendar.png");
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  right: 2px;
+}
+
+.btn-calendar-days {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 26px;
+  height: 26px;
+}
+.btn-calendar-days.active {
+  font-weight: 800;
+  color: white;
+}
+.btn-calendar-days.active:after {
+  content: "";
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  border-radius: 13px;
+  background-color: #1976D2;
+}
+.btn-calendar-days:hover {
+  font-weight: 800;
+  color: white;
+}
+.btn-calendar-days:hover:after {
+  content: "";
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  border-radius: 13px;
+  background-color: #1976D2;
+}
+
 /* TEXT CLASSES */
 .sm\:text {
   font-size: 1rem;

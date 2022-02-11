@@ -36,13 +36,13 @@
             <div class="col">
                <fieldset>
                   <legend>Inicio</legend>
-                  <input type="date" v-model="form.start_date">
+                  <calendar v-model="form.start_date"></calendar>
                </fieldset>
             </div>
             <div class="col">
                <fieldset>
                   <legend>Fin</legend>
-                  <input type="date" v-model="form.end_date">
+                  <calendar v-model="form.end_date"></calendar>
                </fieldset>
             </div>
          </div>

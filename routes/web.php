@@ -15,7 +15,10 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return redirect('/login');
-    //return view('reports');
+});
+
+Route::get('/home', function () {
+    return redirect('/reports');
 });
 
 Route::group(['middleware' => 'auth'], function () {

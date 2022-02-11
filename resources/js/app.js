@@ -23,6 +23,7 @@ window.Vue.mixin(require('./modal'));
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('reports-component', require('./components/ReportsComponent.vue').default);
 Vue.component('modal-component', require('./components/ModalComponent.vue').default);
+Vue.component('calendar', require('./components/CalendarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
