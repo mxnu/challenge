@@ -1,0 +1,380 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+/* CUSTOM */
+html, body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+.nav-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  box-shadow: 0 0 10px #a0a0a0;
+  background: linear-gradient(to bottom, #05AAF0 0%, #3673E9 100%);
+}
+
+.brand-logo > img {
+  height: 5vh;
+}
+
+.main-tkcambio {
+  background: #f1f1f1;
+}
+
+/* DISPLAYS */
+.d-none {
+  display: none;
+}
+
+/* FLEXBOX */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+/* --- */
+.row {
+  display: flex;
+}
+
+.col {
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.col-md-4 {
+  flex-grow: 1;
+  max-width: 25%;
+}
+
+.col-md-6 {
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+.col-md-8 {
+  flex-grow: 1;
+  max-width: 66.6666%;
+}
+
+@media (min-width: 992px) {
+  .col-lg-6 {
+    flex-grow: 1;
+    max-width: 50%;
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: 4px 6px;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+/* CALENDAR */
+.calendar {
+  width: 230px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 2;
+  padding: 24px 20px;
+  box-shadow: 0 0 6px 2px #333b;
+}
+
+.btn-calendar {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-day {
+  text-align: center;
+}
+
+.calendar-form {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+.calendar-form .calendar-text {
+  cursor: pointer;
+  position: relative;
+  height: 1rem;
+}
+.calendar-form .calendar-text:after {
+  content: "";
+  position: absolute;
+  background-image: url("../../public/images/calendar.png");
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  right: 2px;
+}
+
+.btn-calendar-days {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 26px;
+  height: 26px;
+}
+.btn-calendar-days.active {
+  font-weight: 800;
+  color: white;
+}
+.btn-calendar-days.active:after {
+  content: "";
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  border-radius: 13px;
+  background-color: #1976D2;
+}
+.btn-calendar-days:hover {
+  font-weight: 800;
+  color: white;
+}
+.btn-calendar-days:hover:after {
+  content: "";
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  border-radius: 13px;
+  background-color: #1976D2;
+}
+
+.calendar-select {
+  background: none;
+  padding: 0.5rem;
+  width: 95%;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+}
+
+.calendar-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.calendar-btn.ok {
+  background-color: #1976D2;
+  padding: 0.2rem 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+}
+.calendar-btn.ok[disabled] {
+  background-color: #6da1d4;
+  cursor: not-allowed;
+}
+.calendar-btn.cancel {
+  background-color: #b61919;
+  padding: 0.2rem 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+/* TEXT CLASSES */
+.sm\:text {
+  font-size: 1rem;
+}
+
+.md\:text {
+  font-size: 1.5rem;
+}
+
+.lg\:text {
+  font-size: 2.5rem;
+}
+
+.xl\:text {
+  font-size: 3rem;
+}
+
+.bold\:text {
+  font-weight: 600;
+}
+
+.center\:text {
+  text-align: center;
+}
+
+.force-center\:text {
+  text-align: center !important;
+}
+
+/* SPACES */
+.mt-6 {
+  margin-top: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.8rem;
+}
+
+/* BUTTONS */
+.btn {
+  border: none;
+  cursor: pointer;
+  background-color: #FFBE12;
+  border-radius: 36px;
+  color: #333;
+  padding: 10px 26px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px #a0a0a0;
+  transition: all 0.2s;
+}
+.btn:hover {
+  box-shadow: 0 2px 4px 1px #a0a0a0;
+  background-color: #ffcc00;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  background-color: #CFCFCF;
+}
+
+.btn-descargar {
+  cursor: pointer;
+  font-weight: 800;
+  background: none;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+}
+.btn-descargar img {
+  width: 14px;
+}
+/* TABLES */
+.table-responsive {
+  overflow-x: auto;
+}
+
+table.table {
+  background-color: #4563E6;
+  color: #fff;
+  padding: 6px 10px 20px;
+  border-radius: 0.5rem;
+}
+table.table thead {
+  position: relative;
+  white-space: nowrap;
+}
+table.table thead th {
+  padding: 10px 26px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+table.table thead th:first-child {
+  text-align: left;
+}
+table.table thead th:last-child {
+  text-align: right;
+}
+table.table thead:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #C4C4C4;
+}
+table.table tbody tr {
+  border-bottom: 1px solid #C4C4C4;
+}
+table.table tbody tr td {
+  padding: 10px 26px;
+  position: relative;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+table.table tbody tr td:first-child {
+  text-align: left;
+}
+table.table tbody tr td:last-child {
+  text-align: right;
+}
+table.table tbody tr td:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: #C4C4C4;
+  height: 50%;
+  left: 0;
+}
+
+/* FIELDSET */
+fieldset {
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+}
+fieldset input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  margin-left: -0.5rem;
+  outline: none;
+}
+
+/* MODAL */
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 0.5rem;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* CARD */
+.card {
+  box-shadow: 0 0 2px #333b;
+  padding: 24px 20px;
+}
+.card .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
