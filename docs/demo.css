@@ -117,7 +117,7 @@ html, body {
 .calendar-form .calendar-text:after {
   content: "";
   position: absolute;
-  background-image: url("../../public/images/calendar.png");
+  background-image: url("images/calendar.png");
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;

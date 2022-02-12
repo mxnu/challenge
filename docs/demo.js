@@ -28648,7 +28648,7 @@ var render = function () {
                         [
                           _c("img", {
                             attrs: {
-                              src: "public/images/downward-arrow.png",
+                              src: "images/downward-arrow.png",
                               alt: "Desplegar",
                             },
                           }),
@@ -28666,7 +28666,7 @@ var render = function () {
                         [
                           _c("img", {
                             attrs: {
-                              src: "public/images/left-arrow.png",
+                              src: "images/left-arrow.png",
                               alt: "Anterior",
                             },
                           }),
@@ -28682,7 +28682,7 @@ var render = function () {
                         [
                           _c("img", {
                             attrs: {
-                              src: "public/images/right-arrow.png",
+                              src: "images/right-arrow.png",
                               alt: "Siguiente",
                             },
                           }),
@@ -28886,7 +28886,7 @@ var render = function () {
                       _c("span", [_vm._v("Descargar")]),
                       _c("img", {
                         attrs: {
-                          src: "public/images/icon-download.png",
+                          src: "images/icon-download.png",
                           alt: "Descargar",
                         },
                       }),
